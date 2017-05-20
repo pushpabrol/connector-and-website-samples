@@ -6,13 +6,13 @@ html(lang='en')
 		h1 Hi, #{email}.
 		p Navigate to
 			ul
-				li: a(href="https://pushp.us.webtask.io/connect?q=17x6MEp%2FAU%2BaaH6RqcGplWtfaDRy6NsL8VHYmWylfWnAGQNizfl47jIofmfFSWsPUF75WcIikmbOuzvBvF9aHF2bRSvfxLoqpHKvFJgPdG2n0DHQ%2B3s7qhdt1TUYJq6I") Zendesk
+				li: a(href="https://<tenant>.us.webtask.io/connect?q=<encrypted>") Zendesk
 				li: a(href="/welcome") Welcome page
 				li: a(href="/logout") Logout
 
 script.
 	var urlRed="#{url}";
-	load('https://pushp.us.webtask.io/connect/setcookie?domain=' + window.location.host, function(xhr) {
+	load('https://<tenant>.us.webtask.io/connect/setcookie?domain=' + window.location.host, function(xhr) {
 	if(typeof urlRed != 'undefined' && urlRed != null && urlRed != '') window.location = urlRed;	
 	});
 	function load(url, callback) {
