@@ -13,7 +13,8 @@ module.exports = function (app) {
 	app.get('/secure', function (req, res, next) {
 		console.log(req.query);
 		if(req.query.thirdParty != null)
-		res.render('secure', {  url: 'https://pushp.us.webtask.io/connect?q=17x6MEp%2FAU%2BaaH6RqcGplWtfaDRy6NsL8VHYmWylfWnAGQNizfl47jIofmfFSWsPUF75WcIikmbOuzvBvF9aHF2bRSvfxLoqpHKvFJgPdG2n0DHQ%2B3s7qhdt1TUYJq6I',user_id:'user',email:'user'});
+		// Note - Here I am using a hard coded url but in real use the link should be generated when clicked 	
+		res.render('secure', {  url: 'https://<tenant>.us.webtask.io/connect?q=<encrypted>',user_id:'user',email:'user'});
 		else res.render('secure', {url:'',user_id:'user',email:'user'});
 	     
 	});
