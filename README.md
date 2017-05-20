@@ -1,8 +1,8 @@
 Connector webtask & website Code samples
 
-##Create the url in webtask
+## Create the url in webtask
 
-###Basic steps are listed below
+### Basic steps are listed below
  
 - Ensure wt cli is installed
 - Open a terminal window
@@ -27,7 +27,7 @@ Connector webtask & website Code samples
 
 
 
-####Encryption format is explained below:
+#### Encryption format is explained below:
 
       - create a string with the following format
 
@@ -40,7 +40,7 @@ Connector webtask & website Code samples
 
       A sample of code showing the encryption is included in the file encrypt-sample.js
 
-      2. Create a SAML connection in Auth0 with the name connect-zendesk
+  ## Create a SAML connection in Auth0 with the name connect-zendesk
 
       - Set the SAML Login url = https://<tenant>.us.webtask.io/connect
       - Set the SAML public key/signing certificate = the public key of the certificate created above under step 1
@@ -48,7 +48,7 @@ Connector webtask & website Code samples
       - Save the connection in Auth0
       - Go to the IDP Initiated SSO tab under the connection and select the Service Provider Client Application setup within Auth0 as the default client and set the Response Protocol = SAML 
 
-      3. Act On Website code - website
+  ## Act On Website code - website
 
       - This is a simple express app that has been setup to show some of the setup within Auth0 would work.
       - Set this website up for test on a well known domain
