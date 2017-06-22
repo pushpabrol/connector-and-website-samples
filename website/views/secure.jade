@@ -12,8 +12,9 @@ html(lang='en')
 
 script.
 	var urlRed="#{url}";
+	var RelayState="#{RelayState}";
 	load('https://pushp.us.webtask.io/connect/setcookie?domain=' + window.location.host, function(xhr) {
-	if(typeof urlRed != 'undefined' && urlRed != null && urlRed != '') window.location = urlRed;	
+	if(typeof urlRed != 'undefined' && urlRed != null && urlRed != '') window.location = urlRed + "&RelayState=" + RelayState;	
 	});
 	function load(url, callback) {
 	var xhr;

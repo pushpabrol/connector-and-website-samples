@@ -22,8 +22,8 @@ app.get('/cookies', function (req, res) {
 
 app.get('/setcookie', function (req, res) {
   console.log(req.query);
-  if(req.query.domain !== null)  res.cookie('domain', req.query.domain) 
-  else   res.cookie('domain', 'ldap.desmaximus.com'); // fallback
+  if(req.query.domain !== null)  res.cookie('domain', req.query.domain) // options is optional
+  else   res.cookie('domain', 'ldap.desmaximus.com'); // options is optional
   res.sendStatus(200);
   res.end("OK");
 });
@@ -35,13 +35,13 @@ app.get('/', function(req, res, next) {
     if( typeof req.cookies["domain"] != 'undefined' && req.cookies["domain"] !== null && req.cookies["domain"] !== '')
     {
       res.statusCode = 301;
-      res.redirect('https://' + req.cookies["domain"] + '/secure?thirdParty=zendesk') 
+      res.redirect('https://' + req.cookies["domain"] + '/secure?thirdParty=zendesk&RelayState=' + req.query.RelayState) 
       
     }
-    else // if cookie is not set redirect to base act-on page  
+    else 
     {
       res.statusCode = 301;
-      res.redirect('https://ldap.desmaximus.com/secure?thirdParty=zendesk') 
+      res.redirect('https://ldap.desmaximus.com/secure?thirdParty=zendesk&RelayState=' + req.query.RelayState) 
     }
   }
   
@@ -66,7 +66,8 @@ app.get('/', function(req, res, next) {
     getPostURL: function(wtrealm, wreply, req, callback) {
       return callback(null, 'https://' + req.webtaskContext.secrets.tenant + '.auth0.com/login/callback?connection=' + req.webtaskContext.secrets.connection);
     },
-    getUserFromRequest: getUser
+    getUserFromRequest: getUser,
+    RelayState: req.query.RelayState
   })(req, res, next);
   }
   function getUser(req) {

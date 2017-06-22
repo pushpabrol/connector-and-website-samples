@@ -13,6 +13,7 @@ html(lang='en')
 				label(for='password') Password
 				input(type='password', name='password')
 				input(type='hidden', name='path', value='#{thirdParty}')
+				input(type='hidden', name='rs', value='#{rs}')	
 			input(type='submit')
 		- each message in flash
 			h4(style="color: red;") #{message}

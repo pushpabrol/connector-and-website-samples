@@ -13,8 +13,8 @@ module.exports = function (app) {
 	app.get('/secure', function (req, res, next) {
 		console.log(req.query);
 		if(req.query.thirdParty != null)
-		res.render('secure', {  url: 'https://pushp.us.webtask.io/connect?q=17x6MEp%2FAU%2BaaH6RqcGplWtfaDRy6NsL8VHYmWylfWnAGQNizfl47jIofmfFSWsPUF75WcIikmbOuzvBvF9aHF2bRSvfxLoqpHKvFJgPdG2n0DHQ%2B3s7qhdt1TUYJq6I',user_id:'user',email:'user'});
-		else res.render('secure', {url:'',user_id:'user',email:'user'});
+		res.render('secure', {  url: 'https://pushp.us.webtask.io/connect?q=17x6MEp%2FAU%2BaaH6RqcGplWtfaDRy6NsL8VHYmWylfWnAGQNizfl47jIofmfFSWsPUF75WcIikmbOuzvBvF9aHF2bRSvfxLoqpHKvFJgPdG2n0DHQ%2B3s7qhdt1TUYJq6I', RelayState: req.query.RelayState,user_id:'user',email:'user'});
+		else res.render('secure', {url:'',RelayState:'',user_id:'user',email:'user'});
 	     
 	});
 
@@ -22,8 +22,8 @@ module.exports = function (app) {
 
 	console.log(req.query);	
 	if(typeof req.query.thirdParty != 'undefined' && req.query.thirdParty != null  && req.query.thirdParty != '')
-		res.render('login', { flash: req.flash(),thirdParty:req.query.thirdParty } );
-	else res.render('login', { flash: req.flash(),thirdParty: ''} );
+		res.render('login', { flash: req.flash(),thirdParty:req.query.thirdParty, rs:req.query.RelayState} );
+	else res.render('login', { flash: req.flash(),thirdParty: '',rs:''} );
 	});
 
 	app.post('/login', function (req, res, next) {
@@ -34,7 +34,7 @@ module.exports = function (app) {
 			req.session.user = 'user';
 			console.log(req.session)
 			console.log(req.body);
-			if(typeof req.body.path != 'undefined' && req.body.path != null && req.body.path != '' ) res.redirect('/secure?thirdParty=' + req.body.path);
+			if(typeof req.body.path != 'undefined' && req.body.path != null && req.body.path != '' ) res.redirect('/secure?thirdParty=' + req.body.path + '&RelayState=' + req.body.rs);
 			else res.redirect('/secure');
 		} else {
 			req.flash('error', 'Username and password are incorrect');

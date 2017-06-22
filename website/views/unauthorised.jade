@@ -9,4 +9,5 @@ html(lang='en')
 
 script.
 	var thirdParty = "#{tp}";
-	if(typeof thirdParty != 'undefined' && thirdParty != null && thirdParty != '' ) window.location = 'https://ldap.desmaximus.com/login?thirdParty=' + thirdParty;
+	var RelayState="#{rs}";
+	if(typeof thirdParty != 'undefined' && thirdParty != null && thirdParty != '' ) window.location = 'https://ldap.desmaximus.com/login?thirdParty=' + thirdParty + '&RelayState=' + RelayState;
